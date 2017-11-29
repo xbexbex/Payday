@@ -36,12 +36,14 @@
   text-align: center;
   font-size: 1.2rem;
   margin-bottom: 0;
+  cursor: pointer;
 }
 
 .Error-text-lines {
   margin-top: 0;
   text-align: center;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .Loading-container {
