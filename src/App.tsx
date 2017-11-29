@@ -59,7 +59,7 @@ class App extends React.Component {
             employee.addWorkShift(lineObject.date, lineObject.start, lineObject.end);
           }
         } catch (error) { // catches a faulty row and saves it for error message
-          errorLines += i + ',';
+          errorLines += i + ', ';
         }
       }
       newFile = 'Person ID,Person Name,Salary';
@@ -102,9 +102,10 @@ class App extends React.Component {
     });
   }
 
-  downloadCsvFile = (filename: string) => {
+  downloadCsvFile = (filename: string) => { // creates a csv file from the string
     const element = document.createElement('a');
-    const file = new Blob([newFile], { type: 'text/csv' });
+    const BOM = '\uFEFF';
+    const file = new Blob([BOM + newFile], { type: 'text/csv;charset=UTF-8' });
     element.href = URL.createObjectURL(file);
     element.download = filename;
     element.click();
@@ -185,7 +186,7 @@ class App extends React.Component {
 function csvLineToObject(line: string): LineObject { // parses a row of csv into an object
   if (line && line.includes(',')) {
     const words = line.split(',');
-    if (words.length >= 5) {
+    if (words.length >= 5 && words[0] && words[1] && words[2] && words[3] && words[4]) {
       return {
         name: words[0],
         id: parseInt(words[1], 10),
