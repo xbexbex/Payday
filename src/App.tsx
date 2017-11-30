@@ -104,8 +104,7 @@ class App extends React.Component {
 
   downloadCsvFile = (filename: string) => { // creates a csv file from the string
     const element = document.createElement('a');
-    const BOM = '\uFEFF';
-    const file = new Blob([BOM + newFile], { type: 'text/csv;charset=UTF-8' });
+    const file = new Blob([newFile], { type: 'text/csv;charset=UTF-8' });
     element.href = URL.createObjectURL(file);
     element.download = filename;
     element.click();
