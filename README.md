@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/xbexbex/Payday.svg?branch=master)](https://travis-ci.org/xbexbex/Payday)
 [Link to the app](https://secret-headland-35100.herokuapp.com/)
 
 ## Payday
