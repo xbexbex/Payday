@@ -19,7 +19,7 @@ class App extends React.Component {
 
   constructor(props: {}) {
     super(props);
-    this.readerFinishCallback = this.readerFinishCallback.bind(this);
+    this.readerFinishCallback = this.readerFinishCallback.bind(this); // binding these functions so they can be passed to child elements
     this.onDragEnter = this.onDragEnter.bind(this);
     this.onDragLeave = this.onDragLeave.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -28,7 +28,7 @@ class App extends React.Component {
     this.setErrorLine = this.setErrorLine.bind(this);
   }
 
-  parseFile(accepted: File[], finishCallback: Function, setError: Function, setErrorLine: Function) {
+  parseFile(accepted: File[], finishCallback: Function, setError: Function, setErrorLine: Function) { // parses the csv file
     this.setState({
       fileParsed: false,
       loading: true,
@@ -37,35 +37,45 @@ class App extends React.Component {
     });
 
     reader.onload = function (event: FileReaderEvent) { // new event interface due to a typescript issue
+      const file = event.target.result;
+      const lines = file.split(/\r\n|\n/); // splitting the file into rows
+      let employees = readerLoopThroughLines(lines);
+      newFile = 'Person ID,Person Name,Salary'; // sets the header row of the csv file
+      for (let employee of employees) { // creates a string out of the employee array
+        newFile += '\r\n';
+        newFile += employee.toString();
+      }
+      if (employees.length > 0) {
+        let fn = 'salaries(' + employees[0].getFirstDayMonth() + ')' + '.csv'; // sets the filename
+        finishCallback(fn);
+      } else {
+        finishCallback(null);
+      }
+    };
+
+    function readerLoopThroughLines(lines: string[]) {
       let errorLines: string = '';
       const employees: Employee[] = [];
-      const file = event.target.result;
-      const lines = file.split(/\r\n|\n/);
       for (let i = 1; i < lines.length; i++) { // loops through each line in the csv line, saves the data to an array of employee -objects
         try {
           if (lines[i]) {
             let employee: Employee;
             const lineObject: LineObject = csvLineToObject(lines[i]);
-            const index = employees.findIndex(function (e: Employee) {
+            const index = employees.findIndex(function (e: Employee) { // tries to find an employee with id
               return (e.getId() === lineObject.id);
             });
             if (index != -1) {
               employee = employees[index];
-            } else {
+            } else { // no employee with id was found
               employee = new Employee(lineObject.id);
               employee.setName(lineObject.name);
               employees.push(employee);
             }
             employee.addWorkShift(lineObject.date, lineObject.start, lineObject.end);
           }
-        } catch (error) { // catches a faulty row and saves it for error message
+        } catch (error) { // catches a faulty row and saves it for the error message
           errorLines += i + ', ';
         }
-      }
-      newFile = 'Person ID,Person Name,Salary';
-      for (let employee of employees) { // creates a string out of the employee array
-        newFile += '\r\n';
-        newFile += employee.toString();
       }
       if (errorLines) {
         setError('The file had invalid rows: ');
@@ -73,17 +83,13 @@ class App extends React.Component {
       } else {
         setError('Success!');
       }
-      if (employees.length > 0) {
-        let fn = 'salaries(' + employees[0].getFirstDayMonth() + ')' + '.csv';
-        finishCallback(fn);
-      } else {
-        finishCallback(null);
-      }
-    };
-    reader.readAsText(accepted[0]);
+      return employees;
+    }
+    
+    reader.readAsText(accepted[0]); // calls the onload function
   }
 
-  rejectFile() {
+  rejectFile() { // fires when dropzone receives 
     this.setState({
       error: 'Invalid file. Please use a csv file.',
       errorLines: null
@@ -104,7 +110,8 @@ class App extends React.Component {
 
   downloadCsvFile = (filename: string) => { // creates a csv file from the string
     const element = document.createElement('a');
-    const file = new Blob([newFile], { type: 'text/csv;charset=UTF-8' });
+    const BOM = '\uFEFF';
+    const file = new Blob([BOM + newFile], { type: 'text/csv;charset=UTF-8' });
     element.href = URL.createObjectURL(file);
     element.download = filename;
     element.click();
