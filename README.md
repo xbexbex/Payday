@@ -14,9 +14,9 @@ A simple csv parser for wage calculations.
 * Hourly wage is $3.75
 * Evening bonus is $1.15/hour between 18:00 - 06:00.
 * Overtime:
-  * First 2 Hours > 8 Hours = Hourly Wage + 25% 
-  * Next 2 Hours = Hourly Wage + 50% 
-  * After That = Hourly Wage + 100% 
+  * First 2 hours after 8 hours: +25% of hourly Wage
+  * Next 2 hours: +50% of hourly wage
+  * After that: +100% of hourly wage
 
 
 Tested with Chrome and Firefox on Linux and Windows.
