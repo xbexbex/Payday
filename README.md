@@ -11,8 +11,9 @@ A simple csv parser for wage calculations.
 * Drag a file into the page or click to download, and it will create a .csv file with the monthly salaries.
 
 ### Installation:
+* Install npm package manager if not installed
 * Clone the repository
-* Npm install
+* In the cloned directory, run command "npm install"
 
 ### Wage specifications:
 * Hourly wage is $3.75
