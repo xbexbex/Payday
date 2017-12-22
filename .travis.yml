@@ -6,7 +6,3 @@ cache:
   - node_modules
 script:
   - npm test
-deploy:
-  local_dir: src
-  on:
-    branch: master
