@@ -7,10 +7,10 @@
 
 A simple csv parser for wage calculations. 
 
-###Usage:
+##Usage:
 * Drag a file into the page or click to download, and it will create a .csv file with the monthly salaries.
 
-###Wage specifications:
+##Wage specifications:
 * Hourly wage is $3.75
 * Evening bonus is $1.15/hour between 18:00 - 06:00.
 * Overtime:
