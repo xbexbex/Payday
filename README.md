@@ -1,4 +1,4 @@
-[Link to the app](https://secret-headland-35100.herokuapp.com/) 
+[Link to the app](https://secret-headland-35100.herokuapp.com/)  
 [An example .csv file](testfile.csv)
 
 ## Payday
