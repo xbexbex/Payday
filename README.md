@@ -10,6 +10,10 @@ A simple csv parser for wage calculations.
 ### Usage:
 * Drag a file into the page or click to download, and it will create a .csv file with the monthly salaries.
 
+### Installation:
+* Clone the repository
+* Npm install
+
 ### Wage specifications:
 * Hourly wage is $3.75
 * Evening bonus is $1.15/hour between 18:00 - 06:00.
