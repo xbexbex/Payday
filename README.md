@@ -1,4 +1,4 @@
-[Link to the app](https://secret-headland-35100.herokuapp.com/)  
+[Link to the app](https://payday-assignment.herokuapp.com/)  
 [An example .csv file](https://drive.google.com/open?id=1vMAGcrWITRreCzNdjL7SSa0z4mNGpzun)  
 [An another example .csv file](https://drive.google.com/open?id=14Lwz4KM8BBbsx6dbPd1EZz4NPukjOiTz)  
 
