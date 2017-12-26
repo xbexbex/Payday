@@ -5,7 +5,7 @@
 ## Payday
 [![Build Status](https://travis-ci.org/xbexbex/Payday.svg?branch=master)](https://travis-ci.org/xbexbex/Payday) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e763b76edf454227a3c863ab5ee521b6)](https://www.codacy.com/app/xbexbex/Payday?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xbexbex/Payday&amp;utm_campaign=Badge_Grade)
 
-A simple csv parser for wage calculations. Uses React + Typescript. Bootstrapped with [create-react-app](https://github.com/facebookincubator/create-react-app).
+A simple csv parser for wage calculations. Made as an assignment, hence the weird specifications. Uses React + Typescript. Bootstrapped with [create-react-app](https://github.com/facebookincubator/create-react-app).
 
 ### Usage:
 * Drag a file into the page or click to download, and it will create a .csv file with the monthly salaries.
